@@ -23,11 +23,10 @@ sba_crsm.o: sba.h
 sba_chkjac.o: sba.h sba_chkjac.h compiler.h
 
 dem:
-	cd demo; $(MAKE)
+	echo "Demos were removed"
 
 clean:
 	@rm -f $(OBJS)
-	cd demo; $(MAKE) clean
 	cd matlab; $(MAKE) clean
 
 realclean cleanall: clean
