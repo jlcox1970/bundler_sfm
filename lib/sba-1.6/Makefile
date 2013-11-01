@@ -15,6 +15,7 @@ all: libsba.a dem
 libsba.a: $(OBJS)
 	$(AR) crv libsba.a $(OBJS)
 	$(RANLIB) libsba.a
+	cp libsba.a ..
 
 sba_levmar.o: sba.h sba_chkjac.h compiler.h
 sba_levmar_wrap.o: sba.h
