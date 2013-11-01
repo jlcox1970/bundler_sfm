@@ -27,7 +27,6 @@ dem:
 
 clean:
 	@rm -f $(OBJS)
-	cd matlab; $(MAKE) clean
 
 realclean cleanall: clean
 	@rm -f libsba.a
