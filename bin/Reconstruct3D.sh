@@ -1,10 +1,17 @@
 #!/bin/bash
 
-echo
-echo "Next up:"
-echo ">> RunBundler.sh"
-sleep 2
-RunBundler.sh
+echo "You want to RunBundler.sh ? [Y/n] "
+read READ_KEY
+if [ $READ_KEY = "Y" ] || [ $READ_KEY = "y" ]; then
+    echo
+    echo "Next up:"
+    echo ">> RunBundler.sh"
+    sleep 2
+    RunBundler.sh
+else
+    echo
+    echo "Not running bundler."
+fi
 echo
 echo "Next up:"
 echo ">> Bundle2PMVS list.txt bundle/bundle.out"
