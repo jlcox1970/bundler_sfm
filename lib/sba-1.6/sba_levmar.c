@@ -1197,8 +1197,8 @@ if(!(itno%100)){
        * Note that if MAT_STORAGE==1 S is modified in the following call;
        * this is OK since S is recomputed for each iteration
        */
-	    //issolved=sba_Axb_LU(S, E+mcon*cnp, dpa+mcon*cnp, Sdim, MAT_STORAGE); linsolver=sba_Axb_LU;
-      issolved=sba_Axb_Chol(S, E+mcon*cnp, dpa+mcon*cnp, Sdim, MAT_STORAGE); linsolver=sba_Axb_Chol;
+	    issolved=sba_Axb_LU(S, E+mcon*cnp, dpa+mcon*cnp, Sdim, MAT_STORAGE); linsolver=sba_Axb_LU;
+      //issolved=sba_Axb_Chol(S, E+mcon*cnp, dpa+mcon*cnp, Sdim, MAT_STORAGE); linsolver=sba_Axb_Chol;
       //issolved=sba_Axb_BK(S, E+mcon*cnp, dpa+mcon*cnp, Sdim, MAT_STORAGE); linsolver=sba_Axb_BK;
       //issolved=sba_Axb_QRnoQ(S, E+mcon*cnp, dpa+mcon*cnp, Sdim, MAT_STORAGE); linsolver=sba_Axb_QRnoQ;
       //issolved=sba_Axb_QR(S, E+mcon*cnp, dpa+mcon*cnp, Sdim, MAT_STORAGE); linsolver=sba_Axb_QR;
@@ -1813,8 +1813,8 @@ if(!(itno%100)){
 		    ptr2=ea + j*easz; // set ptr2 to point to ea_j
 		    ptr3=dp + j*cnp; // set ptr3 to point to da_j
 
-		    //nsolved+=sba_Axb_LU(ptr1, ptr2, ptr3, cnp, 0); linsolver=sba_Axb_LU;
-		    nsolved+=sba_Axb_Chol(ptr1, ptr2, ptr3, cnp, 0); linsolver=sba_Axb_Chol;
+		    nsolved+=sba_Axb_LU(ptr1, ptr2, ptr3, cnp, 0); linsolver=sba_Axb_LU;
+		    //nsolved+=sba_Axb_Chol(ptr1, ptr2, ptr3, cnp, 0); linsolver=sba_Axb_Chol;
 		    //nsolved+=sba_Axb_BK(ptr1, ptr2, ptr3, cnp, 0); linsolver=sba_Axb_BK;
 		    //nsolved+=sba_Axb_QRnoQ(ptr1, ptr2, ptr3, cnp, 0); linsolver=sba_Axb_QRnoQ;
 		    //nsolved+=sba_Axb_QR(ptr1, ptr2, ptr3, cnp, 0); linsolver=sba_Axb_QR;
@@ -2363,8 +2363,8 @@ if(!(itno%100)){
         ptr2=eb + i*ebsz; // set ptr2 to point to eb_i
         ptr3=dp + i*pnp; // set ptr3 to point to db_i
 
-        //nsolved+=sba_Axb_LU(ptr1, ptr2, ptr3, pnp, 0); linsolver=sba_Axb_LU;
-        nsolved+=sba_Axb_Chol(ptr1, ptr2, ptr3, pnp, 0); linsolver=sba_Axb_Chol;
+        nsolved+=sba_Axb_LU(ptr1, ptr2, ptr3, pnp, 0); linsolver=sba_Axb_LU;
+        //nsolved+=sba_Axb_Chol(ptr1, ptr2, ptr3, pnp, 0); linsolver=sba_Axb_Chol;
         //nsolved+=sba_Axb_BK(ptr1, ptr2, ptr3, pnp, 0); linsolver=sba_Axb_BK;
         //nsolved+=sba_Axb_QRnoQ(ptr1, ptr2, ptr3, pnp, 0); linsolver=sba_Axb_QRnoQ;
         //nsolved+=sba_Axb_QR(ptr1, ptr2, ptr3, pnp, 0); linsolver=sba_Axb_QR;
