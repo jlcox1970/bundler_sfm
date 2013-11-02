@@ -23,6 +23,7 @@ $OUT_DIR = "./prepare";
 $SCALE=1.0;
 
 %ccd_widths = (
+     "Apple iPad mini"                  => 2,
      "Asahi Optical Co.,Ltd.  PENTAX Optio330RS" => 7.176, # 1/1.8"
      "Canon Canon DIGITAL IXUS 400"     => 7.176,  # 1/1.8"
      "Canon Canon DIGITAL IXUS 40"      => 5.76,   # 1/2.5"
