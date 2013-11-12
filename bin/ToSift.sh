@@ -19,7 +19,7 @@ if [ $OS == "Cygwin" ]
 then
     SIFT=$BIN_PATH/siftWin32.exe
 else
-    SIFT=$BIN_PATH/sift
+    SIFT=`which siftfeat`
 fi
 
 if [ -e $SIFT ]
@@ -33,5 +33,5 @@ for d in `ls -1 $IMAGE_DIR | egrep "jpg$"`
 do 
     pgm_file=$IMAGE_DIR/`echo $d | sed 's/jpg$/pgm/'`
     key_file=$IMAGE_DIR/`echo $d | sed 's/jpg$/key/'`
-    echo "mogrify -format pgm $IMAGE_DIR/$d; $SIFT < $pgm_file > $key_file; rm $pgm_file; gzip -f $key_file"
+    echo "mogrify -format pgm $IMAGE_DIR/$d; $SIFT  $pgm_file -x -o $key_file; rm $pgm_file; gzip -f $key_file"
 done

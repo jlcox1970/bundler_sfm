@@ -291,6 +291,7 @@ $SCALE=1.0;
      "SONY DSC-W5"                      => 7.176,  # 1/1.8"
      "SONY DSC-W7"                      => 7.176,  # 1/1.8"
      "SONY DSC-W80"                     => 5.75,   # 1/2.5"
+     "SAMSUNG GT-I9505"			=> 6.1,
 );
 
 `mkdir $OUT_DIR`;
