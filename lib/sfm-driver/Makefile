@@ -3,7 +3,7 @@
 CC=gcc
 OPTFLAGS=-O3
 OTHERFLAGS=-Wall
-INCLUDE_PATH=-I../matrix -I../imagelib -I../sba-1.5
+INCLUDE_PATH=-I../matrix -I../imagelib -I../sba-1.6
 
 CFLAGS=$(OTHERFLAGS) $(OPTFLAGS) $(INCLUDE_PATH)
 

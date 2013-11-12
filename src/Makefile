@@ -22,7 +22,7 @@ RADIALUNDISTORT=RadialUndistort
 endif
 
 INCLUDE_PATH=-I../lib/imagelib -I../lib/sfm-driver -I../lib/matrix	\
-	-I../lib/5point -I../lib/sba-1.5 -I../lib/ann_1.1_char/include
+	-I../lib/5point -I../lib/sba-1.6 -I../lib/ann_1.1_char/include
 
 LIB_PATH=-L../lib -L../lib/ann_1.1_char/lib
 
@@ -37,7 +37,7 @@ BUNDLER_OBJS=BaseApp.o BundlerApp.o keys.o Register.o Epipolar.o	\
 	BundleIO.o ProcessBundle.o BundleTwo.o Decompose.o		\
 	RelativePose.o Distortion.o TwoFrameModel.o LoadJPEG.o
 
-BUNDLER_LIBS=-limage -lsfmdrv -lsba.v1.5 -lmatrix -lz -llapack -lblas \
+BUNDLER_LIBS=-limage -lsfmdrv -lsba -lmatrix -lz -llapack -lblas \
 	-lcblas -lminpack -lm -l5point -ljpeg -lANN_char -lgfortran
 
 

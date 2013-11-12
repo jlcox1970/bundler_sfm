@@ -632,10 +632,10 @@ void run_sfm(int num_pts, int num_cameras, int ncons,
     sfm_global_t global_params;
 
     // #ifndef SBA_V121
-    camera_constraints_t *constraints = NULL;
+    //camera_constraints_t *constraints = NULL;
     // #endif
 
-    point_constraints_t *point_constraints = NULL;
+    //point_constraints_t *point_constraints = NULL;
 
     const double f_scale = 0.001;
     const double k_scale = 5.0;
@@ -724,6 +724,7 @@ void run_sfm(int num_pts, int num_cameras, int ncons,
 
     // #ifndef SBA_V121
     /* Create the constraints */
+    /*
     if (use_constraints) {
 	constraints = 
 	    (camera_constraints_t *) 
@@ -785,6 +786,7 @@ void run_sfm(int num_pts, int num_cameras, int ncons,
 	    }
 	}
     }
+    */
 
     /* Fill global param struct */
     global_params.num_cameras = num_cameras;
@@ -820,58 +822,46 @@ void run_sfm(int num_pts, int num_cameras, int ncons,
 #define MAX_ITERS 150 // 256
 #define VERBOSITY 3
 
+/* by Jae Hyun Lim */
+#define PTS_CONS 0
 #ifdef SBA_V121
     if (fix_points == 0) {
         if (optimize_for_fisheye == 0) {
-            sba_motstr_levmar(num_pts, num_cameras, ncons, 
-                              vmask, params, cnp, 3, projections, NULL, 2, 
-                              //remove NULL in prev line for sba v1.2.1
-                              sfm_project_point3, NULL, 
-                              (void *) (&global_params),
-                              MAX_ITERS, VERBOSITY, opts, info,
-                              use_constraints, constraints,
-                              use_point_constraints,
-                              point_constraints, Vout, Sout, Uout, Wout);
-        } else {
-            sba_motstr_levmar(num_pts, num_cameras, ncons, 
+            sba_motstr_levmar(num_pts, PTS_CONS, num_cameras, ncons,
                               vmask, params, cnp, 3, projections, NULL, 2,
-                              sfm_project_point2_fisheye, NULL, 
+                              sfm_project_point3, NULL,
                               (void *) (&global_params),
-                              MAX_ITERS, VERBOSITY, opts, info,
-                              use_constraints, constraints,
-                              use_point_constraints,
-                              point_constraints, Vout, Sout, Uout, Wout); 
+                              MAX_ITERS, VERBOSITY, opts, info);
+        } else {
+            sba_motstr_levmar(num_pts, PTS_CONS, num_cameras, ncons,
+                              vmask, params, cnp, 3, projections, NULL, 2,
+                              sfm_project_point2_fisheye, NULL,
+                              (void *) (&global_params),
+                              MAX_ITERS, VERBOSITY, opts, info);
         }
     } else {
         if (optimize_for_fisheye == 0) {
-            sba_mot_levmar(num_pts, num_cameras, ncons, 
+            sba_mot_levmar(num_pts, num_cameras, ncons,
                            vmask, params, cnp, projections, NULL, 2,
-                           sfm_project_point3_mot, NULL, 
+                           sfm_project_point3_mot, NULL,
                            (void *) (&global_params),
-                           MAX_ITERS, VERBOSITY, opts, info,
-                           use_constraints, constraints);
+                           MAX_ITERS, VERBOSITY, opts, info);
         } else {
-            sba_mot_levmar(num_pts, num_cameras, ncons, 
+            sba_mot_levmar(num_pts, num_cameras, ncons,
                            vmask, params, cnp, projections, NULL, 2,
-                           sfm_project_point2_fisheye_mot, NULL, 
+                           sfm_project_point2_fisheye_mot, NULL,
                            (void *) (&global_params),
-                           MAX_ITERS, VERBOSITY, opts, info,
-                           use_constraints, constraints);
+                           MAX_ITERS, VERBOSITY, opts, info);
         }
     }
 #else
     if (fix_points == 0) {
-	sba_motstr_levmar(num_pts, num_cameras, ncons, 
-			  vmask, params, cnp, 3, projections, 2,
-			  sfm_project_point2, NULL, (void *) (&global_params),
-			  MAX_ITERS, VERBOSITY, opts, info, 
-			  use_constraints, constraints, 
-                          Vout, Sout, Uout, Wout);
+        //sba_motstr_levmar(num_pts, num_cameras, ncons, sba_motstr_levmar(num_pts, PTS_CONS, num_cameras, ncons, vmask, params, cnp, 3, projections, 2, sfm_project_point2, NULL, (void *) (&global_params), MAX_ITERS, VERBOSITY, opts, info/*, use_constraints, constraints, Vout, Sout, Uout, Wout*/);
     } else {
-	sba_mot_levmar(num_pts, num_cameras, ncons, 
-		       vmask, params, cnp, projections, 2,
-		       sfm_mot_project_point, NULL, (void *) (&global_params),
-		       MAX_ITERS, VERBOSITY, opts, info);
+        sba_mot_levmar(num_pts, num_cameras, ncons,
+                       vmask, params, cnp, projections, 2,
+                       sfm_mot_project_point, NULL,
+                       (void *) (&global_params), MAX_ITERS, VERBOSITY, opts, info);
     }
 #endif
     
@@ -993,6 +983,7 @@ void run_sfm(int num_pts, int num_cameras, int ncons,
     free(params);
 
     // #ifndef SBA_V121
+    /*
     if (use_constraints) {
 	for (i = 0; i < num_cameras; i++) {
 	    free(constraints[i].constraints);
@@ -1001,6 +992,7 @@ void run_sfm(int num_pts, int num_cameras, int ncons,
 	}
 	free(constraints);
     }
+    */
 
     free(global_last_ws);
     free(global_last_Rs);
