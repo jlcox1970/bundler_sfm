@@ -5,7 +5,7 @@
 
 # Set this variable to your base install path (e.g., /home/foo/bundler)
 BIN_PATH=$(dirname $(which $0));
-
+BIN_SIFT=siftfeat
 IMAGE_DIR="."
 
 if [ $# -eq 1 ]
@@ -19,7 +19,7 @@ if [ $OS == "Cygwin" ]
 then
     SIFT=$BIN_PATH/siftWin32.exe
 else
-    SIFT=`which siftfeat`
+    SIFT=`which $BIN_SIFT`
 fi
 
 if [ -e $SIFT ]
